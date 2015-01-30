@@ -9,16 +9,12 @@ var H5P = H5P || {};
  */
 H5P.QuestionContainer = (function ($) {
         
-  function C (content, contentId) {
-    var children = [];
-    // Instantiate children
-    for (var i = 0; i < content.children.length; i++) {
-      children.push(H5P.newRunnable(params.pages[i], contentId));
-    }
+  function C (children, contentId) {
+    this.children = children;
   }
 
   C.prototype.showSolutions = function () {
-    for (var i = 0; i < children.length; i++) {
+    for (var i = 0; i < this.children.length; i++) {
       this.children[i].showSolutions();
     }
   };
@@ -39,6 +35,9 @@ H5P.QuestionContainer = (function ($) {
       score += this.children[i].getMaxScore();
     }
     return score;
+  };
+  C.prototype.getAnswerGiven = function () {
+    return 'TODO';
   };
   return C;
 })(H5P.jQuery);
